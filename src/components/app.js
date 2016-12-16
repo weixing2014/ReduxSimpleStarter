@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Todo from './todo.js'
+import VisibleTodos from '../containers/visible-todos'
+import AddTodo from '../containers/add-todo'
 
 export default class App extends Component {
   render() {
@@ -7,10 +8,8 @@ export default class App extends Component {
       <div>
         <div>React simple starter</div>
         <div>
-          <Todo onCheckboxChange={() => {console.log('onCheckboxChange called')}}
-                onTextClick={() => {console.log('onTextClick called')}}
-                checked={false}
-                label={'hooray'}/>
+          <AddTodo />
+          <VisibleTodos />
         </div>
       </div>
     );

@@ -1,4 +1,4 @@
-import {addTodo, deleteTodo, setTodoCompleted} from '../../src/actions/index'
+import {addTodo, deleteTodo, toggleTodo} from '../../src/actions/index'
 
 describe('Actions', () => {
   it('adds a new todo', () => {
@@ -20,8 +20,8 @@ describe('Actions', () => {
   })
 
   it('marks a todo completed', () => {
-    expect(setTodoCompleted({id: 1, completed: true})).to.deep.eql({
-      type: "SET_TODO_COMPLETED",
+    expect(toggleTodo({id: 1, completed: true})).to.deep.eql({
+      type: "TOGGLE_TODO",
       payload: {
         id: 1,
         completed: true,

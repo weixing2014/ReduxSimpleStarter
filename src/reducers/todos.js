@@ -17,7 +17,7 @@ const todos = handleActions({
     return state.filter(todo => todo.id !== id)
   },
 
-  [types.SET_TODO_COMPLETED]: (state, {payload: {id, completed}}) => {
+  [types.TOGGLE_TODO]: (state, {payload: {id, completed}}) => {
     return state.map(todo => {
       if (todo.id === id) {
         todo.completed = (typeof completed === 'undefined' ? true : completed)
