@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import todos from './todos'
 
 // {
 //   todos: [
@@ -8,8 +9,6 @@ import { combineReducers } from 'redux';
 //   visibility: 'active' or 'completed' or 'all'
 // }
 
-const rootReducer = combineReducers({
-  state: (state = {}) => state
-});
+const rootReducer = combineReducers({todos})
 
 export default rootReducer;
