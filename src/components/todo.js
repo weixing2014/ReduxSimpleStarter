@@ -1,4 +1,4 @@
-import {Component}, React from 'react'
+import React, { Component } from 'react'
 
 class Todo extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Todo extends Component {
     this.setState({
       checked: !this.state.checked
     })
-    this.props.handleCheckboxChange()
+    this.props.onCheckboxChange()
   }
 
   render() {
@@ -20,12 +20,13 @@ class Todo extends Component {
       <div>
         <input type='checkbox'
                onChange={() => this._handleCheckboxChange()}
-               checked={this.state.checked}>
-          <label onClick={() => this.props.handleTextClick()}>
-            {this.props.label}
-          </label>
-        </input>
+               checked={this.state.checked} />
+        <label onClick={() => this.props.onTextClick()}>
+          {this.props.label}
+        </label>
       </div>
     )
   }
 }
+
+export default Todo
