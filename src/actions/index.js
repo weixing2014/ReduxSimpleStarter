@@ -1,14 +1,14 @@
 import {createActions} from 'redux-actions'
-import {ADD_TODO, DELETE_TODO, TOGGLE_TODO, SET_VISIBILITY} from './action_types'
+import {ADD_TODO, DELETE_TODO, SET_TODO_COMPLETED, SET_VISIBILITY} from './action_types'
 
 export const {
   addTodo,
   deleteTodo,
-  toggleTodo,
+  setTodoCompleted,
   setVisibility
 } = createActions(
   ADD_TODO,
   DELETE_TODO,
-  TOGGLE_TODO,
+  SET_TODO_COMPLETED,
   SET_VISIBILITY
 )

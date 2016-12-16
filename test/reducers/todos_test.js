@@ -17,4 +17,20 @@ describe('todos reducer', () => {
 
     expect(reducer(initalState, action)).to.deep.equal(nextState)
   })
+
+  it('sets a todo completed', () => {
+    const action = {type: types.SET_TODO_COMPLETED, payload: {id: 1}}
+    const initalState = [{completed: false, id: 1, text: 'text'}]
+    const nextState = [{completed: true, id: 1, text: 'text'}]
+
+    expect(reducer(initalState, action)).to.deep.equal(nextState)
+  })
+
+  it('sets a todo incompleted', () => {
+    const action = {type: types.SET_TODO_COMPLETED, payload: {id: 1, completed: false}}
+    const initalState = [{completed: true, id: 1, text: 'text'}]
+    const nextState = [{completed: false, id: 1, text: 'text'}]
+
+    expect(reducer(initalState, action)).to.deep.equal(nextState)
+  })
 })
