@@ -1,5 +1,6 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 import todos from './todos'
+import visibility from './visibility'
 
 // {
 //   todos: [
@@ -9,6 +10,6 @@ import todos from './todos'
 //   visibility: 'active' or 'completed' or 'all'
 // }
 
-const rootReducer = combineReducers({todos})
+const rootReducer = combineReducers({todos, visibility})
 
 export default rootReducer;

@@ -1,16 +1,39 @@
 import {connect} from 'react-redux'
 import Todos from '../components/todos'
 import {toggleTodo} from '../actions'
+import {VISIBILITY_ALL, VISIBILITY_ACTIVE, VISIBILITY_COMPLETED} from '../constant'
+
+const visibleTodos = (todos, filter) => {
+  let visibleTodos
+
+  switch(filter) {
+    case VISIBILITY_ALL:
+      visibleTodos = todos
+      break
+    case VISIBILITY_ACTIVE:
+      visibleTodos = todos.filter(todo => !todo.completed)
+      break
+    case VISIBILITY_COMPLETED:
+      visibleTodos = todos.filter(todo => todo.completed)
+      break
+    default:
+      visibleTodos = todos
+  }
+
+  return visibleTodos
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCheckboxChange: id => dispatch(toggleTodo({id}))
+    onCheckboxChange: id => {
+      dispatch(toggleTodo(id))
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+    todos: visibleTodos(state.todos, state.visibility)
   }
 }
 

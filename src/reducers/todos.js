@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions'
-import * as types from '../actions/action_types'
+import * as types from '../actions/action-types'
 
 const todos = handleActions({
   [types.ADD_TODO]: (state, {payload: {text}}) => {
@@ -20,7 +20,7 @@ const todos = handleActions({
   [types.TOGGLE_TODO]: (state, {payload: {id, completed}}) => {
     return state.map(todo => {
       if (todo.id === id) {
-        todo.completed = (typeof completed === 'undefined' ? true : completed)
+        todo.completed = (typeof completed === 'undefined' ? !todo.completed : completed)
       }
       return todo
     })

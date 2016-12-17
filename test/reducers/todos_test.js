@@ -1,5 +1,5 @@
 import reducer from '../../src/reducers/todos'
-import * as types from '../../src/actions/action_types'
+import * as types from '../../src/actions/action-types'
 
 describe('todos reducer', () => {
   it('adds a todo', () => {

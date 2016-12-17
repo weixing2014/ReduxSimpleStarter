@@ -1,5 +1,5 @@
 import {createActions} from 'redux-actions'
-import {ADD_TODO, DELETE_TODO, TOGGLE_TODO, SET_VISIBILITY} from './action_types'
+import {ADD_TODO, DELETE_TODO, TOGGLE_TODO, SET_VISIBILITY} from './action-types'
 
 export const {
   addTodo,
@@ -9,5 +9,8 @@ export const {
 } = createActions({
   ADD_TODO: text => ({text}),
   DELETE_TODO: id => ({id}),
-  TOGGLE_TODO: id => ({id}),
-}, SET_VISIBILITY)
+  TOGGLE_TODO: (id, completed) => {
+    return {id, completed}
+  },
+  SET_VISIBILITY: filter => ({filter})
+})
