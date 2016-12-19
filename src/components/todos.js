@@ -3,7 +3,7 @@ import Todo from './../components/todo'
 
 class Todos extends Component {
   render() {
-    const {todos, onCheckboxChange} = this.props;
+    const {todos, onCheckboxChange, onDelete} = this.props;
 
     return (
       <div className="todos">
@@ -14,6 +14,7 @@ class Todos extends Component {
 
               return <Todo key={id}
                            onCheckboxChange={() => onCheckboxChange(id)}
+                           onDelete={() => onDelete(id)}
                            checked={completed}
                            label={text} />
             }

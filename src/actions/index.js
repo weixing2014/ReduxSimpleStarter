@@ -9,8 +9,6 @@ export const {
 } = createActions({
   ADD_TODO: text => ({text}),
   DELETE_TODO: id => ({id}),
-  TOGGLE_TODO: (id, completed) => {
-    return {id, completed}
-  },
+  TOGGLE_TODO: (id, completed) => ({id, completed}),
   SET_VISIBILITY: filter => ({filter})
 })

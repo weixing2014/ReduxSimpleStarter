@@ -27,6 +27,20 @@ class Todo extends Component {
             {this.props.label}
           </span>
         </label>
+        {' '}
+        <span className='tools'>
+          <a href='#'
+             className='tools__delete'
+             onClick={(e) => {
+               e.preventDefault()
+               this.props.onDelete()
+             }}
+             >
+            Del
+          </a>
+          {' '}
+          <a href='#' className='tools__edit'>Edit</a>
+        </span>
       </div>
     )
   }

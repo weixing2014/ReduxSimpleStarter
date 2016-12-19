@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import Todos from '../components/todos'
-import {toggleTodo} from '../actions'
+import {toggleTodo, deleteTodo} from '../actions'
 import {VISIBILITY_ALL, VISIBILITY_ACTIVE, VISIBILITY_COMPLETED} from '../constant'
 
 const visibleTodos = (todos, filter) => {
@@ -25,9 +25,8 @@ const visibleTodos = (todos, filter) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onCheckboxChange: id => {
-      dispatch(toggleTodo(id))
-    }
+    onCheckboxChange: id => dispatch(toggleTodo(id)),
+    onDelete: id => dispatch(deleteTodo(id)),
   }
 }
 
