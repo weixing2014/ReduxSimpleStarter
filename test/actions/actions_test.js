@@ -20,9 +20,10 @@ describe('Actions', () => {
   })
 
   it('toggles a todo', () => {
-    expect(toggleTodo(1)).to.deep.eql({
+    expect(toggleTodo(1, false)).to.deep.eql({
       type: "TOGGLE_TODO",
       payload: {
+        completed: false,
         id: 1
       }
     })
