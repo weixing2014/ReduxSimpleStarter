@@ -1,3 +1,3 @@
-export const VISIBILITY_ALL = 'all'
-export const VISIBILITY_ACTIVE = 'active'
-export const VISIBILITY_COMPLETED = 'completed'
+export const VISIBILITY_ALL = 'ALL'
+export const VISIBILITY_ACTIVE = 'ACTIVE'
+export const VISIBILITY_COMPLETED = 'COMPLETED'

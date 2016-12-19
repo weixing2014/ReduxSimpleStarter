@@ -34,11 +34,11 @@ class Todo extends Component {
 
   _renderTextInput() {
     const {onSubmit, label} = this.props
-    const textInput = this.refs.todoTextInput
 
     return (
       <div>
         <form onSubmit={e => {
+                const textInput = this.refs.todoTextInput
                 e.preventDefault()
                 onSubmit(textInput.value)
                 this.setState({editing: false})
