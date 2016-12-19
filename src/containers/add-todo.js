@@ -10,15 +10,15 @@ class AddTodo extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={(e) => {
+        <form onSubmit={e => {
           e.preventDefault()
 
           const todoText = this.refs.todoText
           this.props.dispatch(addTodo(todoText.value))
           todoText.value = ''
         }}>
-          <input ref='todoText'></input>
-          <input type='submit'></input>
+          <input ref='todoText' />
+          <input type='submit' value='Add' />
         </form>
       </div>
     )

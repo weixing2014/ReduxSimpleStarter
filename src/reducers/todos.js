@@ -24,8 +24,14 @@ const todos = handleActions({
       }
       return todo
     })
-  }
+  },
 
+  [types.UPDATE_TODO]: (state, {payload: {id, text}}) => {
+    return state.map(todo => {
+      if (todo.id === id) todo.text = text || ''
+      return todo
+    })
+  }
 }, [])
 
 export default todos
