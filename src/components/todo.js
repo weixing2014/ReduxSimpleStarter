@@ -18,11 +18,14 @@ class Todo extends Component {
   render() {
     return (
       <div>
-        <input type='checkbox'
-               onChange={() => this._handleCheckboxChange()}
-               checked={this.state.checked} />
-        <label onClick={() => this.props.onTextClick()}>
-          {this.props.label}
+        <label>
+          <input type='checkbox'
+                 onChange={() => this._handleCheckboxChange()}
+                 checked={this.state.checked}
+                 />
+          <span style={{textDecoration: this.state.checked ? 'line-through': 'none'}}>
+            {this.props.label}
+          </span>
         </label>
       </div>
     )
