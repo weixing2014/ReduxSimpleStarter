@@ -31,6 +31,10 @@ const todos = handleActions({
       if (todo.id === id) todo.text = text || ''
       return todo
     })
+  },
+
+  [types.ADD_TODO_FAILURE]: (state, {payload: {id, error}}) => {
+    return state.filter(todo => todo.id !== id)
   }
 }, [])
 
