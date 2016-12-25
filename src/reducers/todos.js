@@ -37,12 +37,23 @@ const todos = handleActions({
     return state.filter(todo => todo.id !== id)
   },
 
-  [types.ADD_TODO_SUCCESS]: (state, {payload: {id, newId}}) => {
+  [types.ADD_TODO_SUCCESS]: (state, {payload: {id, serverId}}) => {
     return state.map(todo => {
-      if (todo.id === id) todo.id = newId
+      if (todo.id === id) todo.id = serverId
       return todo
     })
   },
+
+  [types.FETCH_TODOS_SUCCESS]: (state, {payload: {todos}}) => {
+    return [
+      ...state,
+      ...todos.map(todo => ({
+        id: todo.id,
+        completed: todo.completed,
+        text: todo.title
+      }))
+    ]
+  }
 }, [])
 
 export default todos

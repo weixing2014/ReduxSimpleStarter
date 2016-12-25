@@ -9,21 +9,52 @@ export const {
   deleteTodo,
   toggleTodo,
   setVisibility,
-  updateTodo
+  updateTodo,
+  fetchTodosStart,
+  fetchTodosSuccess,
+  fetchTodosFailure
 } = createActions({
-  ADD_TODO: (id, text) => ({id, text}),
-  ADD_TODO_SUCCESS: (id, newId) => ({id, newId}),
-  ADD_TODO_FAILURE: (id, error) => ({id, error}),
+  ADD_TODO: ({id, text}) => ({id, text}),
+  ADD_TODO_SUCCESS: ({id, serverId}) => ({id, serverId}),
+  ADD_TODO_FAILURE: ({id, error}) => ({id, error}),
   DELETE_TODO: id => ({id}),
   TOGGLE_TODO: (id, completed) => ({id, completed}),
   UPDATE_TODO: (id, text) => ({id, text}),
-  SET_VISIBILITY: filter => ({filter})
+  SET_VISIBILITY: filter => ({filter}),
+  FETCH_TODOS_START: () => ({}),
+  FETCH_TODOS_SUCCESS: ({todos}) => ({todos}),
+  FETCH_TODOS_FAILURE: ({error}) => ({error})
 })
+
+export function fetchTodos() {
+  return function(dispatch) {
+    dispatch(fetchTodosStart())
+
+    fetch('https://todo-backend-rails.herokuapp.com/', {
+      method: 'get',
+      dataType: 'jsonp'
+    }).then(response => {
+      const {status, statusText} = response
+
+      if (status >= 200 && status < 300) {
+        return response.json()
+      } else {
+        dispatch(fetchTodosFailure({error: statusText}))
+      }
+    }).then(data => {
+      dispatch(fetchTodosSuccess({todos: data}))
+    }).catch(error => {
+      dispatch(fetchTodosFailure({error}))
+    })
+
+    return null
+  }
+}
 
 export function addTodoOptimistic(text) {
   return function(dispatch) {
     const id = uuidV4()
-    dispatch(addTodo(id, text))
+    dispatch(addTodo({id, text}))
 
     fetch('https://todo-backend-rails.herokuapp.com/', {
       method: 'post',
@@ -39,12 +70,12 @@ export function addTodoOptimistic(text) {
       if (status >= 200 && status < 300) {
         return response.json()
       } else {
-        dispatch(addTodoFailure(id, statusText))
+        dispatch(addTodoFailure({id, error: statusText}))
       }
     }).then(data => {
-      dispatch(addTodoSuccess(id, data.id))
+      dispatch(addTodoSuccess({id, serverId: data.id}))
     }).catch(err => {
-      dispatch(addTodoFailure(id, err))
+      dispatch(addTodoFailure({id, error: err}))
     })
 
     return null
