@@ -15,12 +15,10 @@ class AddTodo extends Component {
 
           const todoTextInput = this.refs.todoText
           const text = todoTextInput.value.trim();
-          
+
           if (text) {
             this.props.dispatch(addTodoOptimistic(text))
             todoTextInput.value = ''
-          } else {
-            return
           }
         }}>
           <input ref='todoText' />

@@ -2,11 +2,11 @@ import {handleActions} from 'redux-actions'
 import * as types from '../actions/action-types'
 
 const todos = handleActions({
-  [types.ADD_TODO]: (state, {payload: {text}}) => {
+  [types.ADD_TODO]: (state, {payload: {id, text}}) => {
     return [
       ...state,
       {
-        id: state.length === 0 ? 0 : state[state.length - 1].id + 1,
+        id,
         text,
         completed: false,
       }
