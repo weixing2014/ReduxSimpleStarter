@@ -13,9 +13,15 @@ class AddTodo extends Component {
         <form onSubmit={e => {
           e.preventDefault()
 
-          const todoText = this.refs.todoText
-          this.props.dispatch(addTodoOptimistic(todoText.value))
-          todoText.value = ''
+          const todoTextInput = this.refs.todoText
+          const text = todoTextInput.value.trim();
+          
+          if (text) {
+            this.props.dispatch(addTodoOptimistic(text))
+            todoTextInput.value = ''
+          } else {
+            return
+          }
         }}>
           <input ref='todoText' />
           <input type='submit' value='Add' />
