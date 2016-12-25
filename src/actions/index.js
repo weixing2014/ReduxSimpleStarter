@@ -7,24 +7,26 @@ export const {
   addTodo,
   addTodoSuccess,
   addTodoFailure,
-  deleteTodo,
+  deleteTodoStart,
+  deleteTodoSuccess,
   toggleTodo,
   setVisibility,
   updateTodo,
   fetchTodosStart,
   fetchTodosSuccess,
-  fetchTodosFailure
+  fetchTodosFailure,
 } = createActions({
   ADD_TODO: ({id, text}) => ({id, text}),
   ADD_TODO_SUCCESS: ({id, serverId}) => ({id, serverId}),
   ADD_TODO_FAILURE: ({id, error}) => ({id, error}),
-  DELETE_TODO: id => ({id}),
+  DELETE_TODO_START: id => ({id}),
+  DELETE_TODO_SUCCESS: () => ({}),
   TOGGLE_TODO: (id, completed) => ({id, completed}),
   UPDATE_TODO: (id, text) => ({id, text}),
   SET_VISIBILITY: filter => ({filter}),
   FETCH_TODOS_START: () => ({}),
   FETCH_TODOS_SUCCESS: ({todos}) => ({todos}),
-  FETCH_TODOS_FAILURE: ({error}) => ({error})
+  FETCH_TODOS_FAILURE: ({error}) => ({error}),
 })
 
 export function fetchTodos() {
@@ -34,6 +36,20 @@ export function fetchTodos() {
     api.fetchTodos({
       onSuccess: data => dispatch(fetchTodosSuccess({ todos: data })),
       onFailure: error => dispatch(fetchTodosFailure({ error }))
+    })
+
+    return null
+  }
+}
+
+export function deleteTodo(id) {
+  return function(dispatch) {
+    dispatch(deleteTodoStart(id))
+
+    api.deleteTodo({
+      id,
+      onSuccess: () => dispatch(deleteTodoSuccess()),
+      onFailure: () => {}
     })
 
     return null

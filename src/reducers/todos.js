@@ -13,9 +13,11 @@ const todos = handleActions({
     ]
   },
 
-  [types.DELETE_TODO]: (state, {payload: {id}}) => {
+  [types.DELETE_TODO_START]: (state, {payload: {id}}) => {
     return state.filter(todo => todo.id !== id)
   },
+
+  [types.DELETE_TODO_SUCCESS]: (state) => (state),
 
   [types.TOGGLE_TODO]: (state, {payload: {id, completed}}) => {
     return state.map(todo => {

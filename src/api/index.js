@@ -24,6 +24,24 @@ export function addTodo({ body, onSuccess, onFailure }) {
   })
 }
 
+export function deleteTodo({ id, onSuccess, onFailure }) {
+  fetch(SERVER_URL + id, {
+    method: 'DELETE'
+  }).then(response => {
+    const {status, statusText} = response
+
+    if (status >= 200 && status < 300) {
+      return response.json()
+    } else {
+      onFailure(statusText)
+    }
+  }).then(() => {
+    onSuccess()
+  }).catch(err => {
+    onFailure(err)
+  })
+}
+
 export function fetchTodos({ onSuccess, onFailure }) {
   fetch(SERVER_URL, {
     method: 'get',
