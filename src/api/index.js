@@ -2,6 +2,10 @@ const SERVER_URL = 'https://todo-backend-rails.herokuapp.com/'
 
 export function addTodo({ body, onSuccess, onFailure }) {
   fetch(SERVER_URL, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     method: 'post',
     dataType: 'jsonp',
     body

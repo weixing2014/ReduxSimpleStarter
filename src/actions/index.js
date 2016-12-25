@@ -46,7 +46,7 @@ export function addTodoOptimistic(text) {
     dispatch(addTodo({id, text}))
 
     api.addTodo({
-      body: { title: text, order: 0, completed: false },
+      body: JSON.stringify({ title: text, order: 0, completed: false }),
       onSuccess: (data) => { dispatch(addTodoSuccess({id, serverId: data.id})) },
       onFailure: (error) => { dispatch(addTodoFailure({id, error: err})) }
     })
