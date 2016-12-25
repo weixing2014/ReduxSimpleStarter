@@ -12,7 +12,7 @@ export const {
   updateTodo
 } = createActions({
   ADD_TODO: (id, text) => ({id, text}),
-  ADD_TODO_SUCCESS: (id, response) => ({response}),
+  ADD_TODO_SUCCESS: (id, newId) => ({id, newId}),
   ADD_TODO_FAILURE: (id, error) => ({id, error}),
   DELETE_TODO: id => ({id}),
   TOGGLE_TODO: (id, completed) => ({id, completed}),
@@ -25,17 +25,24 @@ export function addTodoOptimistic(text) {
     const id = uuidV4()
     dispatch(addTodo(id, text))
 
-    fetch('/add_todo', {
+    fetch('https://todo-backend-rails.herokuapp.com/', {
       method: 'post',
-      body: JSON.stringify({text})
+      dataType: 'jsonp',
+      body: {
+        title: text,
+        order: 0,
+        completed: false
+      }
     }).then(response => {
-      const {statusText, status} = response
+      const {status, statusText} = response
 
       if (status >= 200 && status < 300) {
-        dispatch(addTodoSuccess(response))
+        return response.json()
       } else {
         dispatch(addTodoFailure(id, statusText))
       }
+    }).then(data => {
+      dispatch(addTodoSuccess(id, data.id))
     }).catch(err => {
       dispatch(addTodoFailure(id, err))
     })

@@ -35,7 +35,14 @@ const todos = handleActions({
 
   [types.ADD_TODO_FAILURE]: (state, {payload: {id, error}}) => {
     return state.filter(todo => todo.id !== id)
-  }
+  },
+
+  [types.ADD_TODO_SUCCESS]: (state, {payload: {id, newId}}) => {
+    return state.map(todo => {
+      if (todo.id === id) todo.id = newId
+      return todo
+    })
+  },
 }, [])
 
 export default todos
