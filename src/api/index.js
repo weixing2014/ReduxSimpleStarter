@@ -29,14 +29,11 @@ export function deleteTodo({ id, onSuccess, onFailure }) {
     method: 'DELETE'
   }).then(response => {
     const {status, statusText} = response
-
     if (status >= 200 && status < 300) {
-      return response.json()
+      onSuccess()
     } else {
       onFailure(statusText)
     }
-  }).then(() => {
-    onSuccess()
   }).catch(err => {
     onFailure(err)
   })

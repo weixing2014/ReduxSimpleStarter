@@ -19,6 +19,10 @@ const todos = handleActions({
 
   [types.DELETE_TODO_SUCCESS]: (state) => (state),
 
+  [types.DELETE_TODO_FAILURE]: (state, {payload: {order, todo}}) => {
+    return state.slice(0, order).concat([todo]).concat(state.slice(order, state.length))
+  },
+
   [types.TOGGLE_TODO]: (state, {payload: {id, completed}}) => {
     return state.map(todo => {
       if (todo.id === id) {

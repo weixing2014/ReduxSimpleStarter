@@ -9,6 +9,7 @@ export const {
   addTodoFailure,
   deleteTodoStart,
   deleteTodoSuccess,
+  deleteTodoFailure,
   toggleTodo,
   setVisibility,
   updateTodo,
@@ -21,6 +22,7 @@ export const {
   ADD_TODO_FAILURE: ({id, error}) => ({id, error}),
   DELETE_TODO_START: id => ({id}),
   DELETE_TODO_SUCCESS: () => ({}),
+  DELETE_TODO_FAILURE: ({order, todo}) => ({order, todo}),
   TOGGLE_TODO: (id, completed) => ({id, completed}),
   UPDATE_TODO: (id, text) => ({id, text}),
   SET_VISIBILITY: filter => ({filter}),
@@ -43,13 +45,16 @@ export function fetchTodos() {
 }
 
 export function deleteTodo(id) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
+    const order = getState().todos.findIndex(todo => (todo.id === id))
+    const todo = getState().todos[order]
+
     dispatch(deleteTodoStart(id))
 
     api.deleteTodo({
       id,
       onSuccess: () => dispatch(deleteTodoSuccess()),
-      onFailure: () => {}
+      onFailure: () => dispatch(deleteTodoFailure({ order, todo }))
     })
 
     return null
