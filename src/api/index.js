@@ -57,3 +57,7 @@ export function fetchTodos({ onSuccess, onFailure }) {
     onFailure(error)
   })
 }
+
+export function fetch(url, options) {
+  fetch(url, options).then(r => (r.json))
+}
