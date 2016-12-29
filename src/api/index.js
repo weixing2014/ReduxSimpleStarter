@@ -39,29 +39,14 @@ export function deleteTodo({ id, onSuccess, onFailure }) {
   })
 }
 
-// export function fetchTodos() {
-//   return fetch(SERVER_URL, {
-//     method: 'get',
-//     dataType: 'jsonp'
-//   }).then(response => {
-//     debugger;
-//     return response.json()
-//   }).then(data => {
-//     debugger;
-//     return data
-//   })
-// }
-
-export function fetchTodos(url, opts) {
-  return fetch(url, opts)
-    .then(function (resp) {
-      return resp.json()
-    })
-    .then(function (resp) {
-      return resp
-    })
-}
-
-export function fetch(url, options) {
-  fetch(url, options).then(r => (r.json))
+export function fetchAllTodos() {
+  return fetch(SERVER_URL, {
+    method: 'get',
+    dataType: 'jsonp'
+  }).then(response => {
+    return response.json()
+  }).then(data => {
+    return data
+  }).catch(err => {
+  })
 }

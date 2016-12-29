@@ -8,7 +8,7 @@ import createSagaMiddleware from 'redux-saga'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import App from './components/app'
 import reducers from './reducers'
-import mySaga from './sagas'
+import sagas from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -19,7 +19,7 @@ const store = createStore(
   )
 )
 
-sagaMiddleware.run(mySaga)
+sagaMiddleware.run(sagas)
 
 render(
   <Provider store={store}>
