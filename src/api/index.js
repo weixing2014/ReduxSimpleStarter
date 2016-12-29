@@ -39,23 +39,27 @@ export function deleteTodo({ id, onSuccess, onFailure }) {
   })
 }
 
-export function fetchTodos({ onSuccess, onFailure }) {
-  fetch(SERVER_URL, {
-    method: 'get',
-    dataType: 'jsonp'
-  }).then(response => {
-    const {status, statusText} = response
+// export function fetchTodos() {
+//   return fetch(SERVER_URL, {
+//     method: 'get',
+//     dataType: 'jsonp'
+//   }).then(response => {
+//     debugger;
+//     return response.json()
+//   }).then(data => {
+//     debugger;
+//     return data
+//   })
+// }
 
-    if (status >= 200 && status < 300) {
-      return response.json()
-    } else {
-      onFailure(statusText)
-    }
-  }).then(data => {
-    onSuccess(data)
-  }).catch(error => {
-    onFailure(error)
-  })
+export function fetchTodos(url, opts) {
+  return fetch(url, opts)
+    .then(function (resp) {
+      return resp.json()
+    })
+    .then(function (resp) {
+      return resp
+    })
 }
 
 export function fetch(url, options) {

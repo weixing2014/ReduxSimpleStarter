@@ -1,9 +1,10 @@
 import {createActions} from 'redux-actions'
 import uuidV4 from 'uuid/v4'
-import {ADD_TODO, ADD_TODO_SUCCESS, ADD_TODO_FAILURE, DELETE_TODO, TOGGLE_TODO, UPDATE_TODO, SET_VISIBILITY} from './action-types'
+import {FETCH_TODOS, ADD_TODO, ADD_TODO_SUCCESS, ADD_TODO_FAILURE, DELETE_TODO, TOGGLE_TODO, UPDATE_TODO, SET_VISIBILITY} from './action-types'
 import * as api from '../api'
 
 export const {
+  fetchTodos,
   addTodo,
   addTodoSuccess,
   addTodoFailure,
@@ -17,6 +18,7 @@ export const {
   fetchTodosSuccess,
   fetchTodosFailure,
 } = createActions({
+  FETCH_TODOS: () => {debugger; return {}},
   ADD_TODO: ({id, text}) => ({id, text}),
   ADD_TODO_SUCCESS: ({id, serverId}) => ({id, serverId}),
   ADD_TODO_FAILURE: ({id, error}) => ({id, error}),
@@ -31,18 +33,18 @@ export const {
   FETCH_TODOS_FAILURE: ({error}) => ({error}),
 })
 
-export function fetchTodos() {
-  return function(dispatch) {
-    dispatch(fetchTodosStart())
-
-    api.fetchTodos({
-      onSuccess: data => dispatch(fetchTodosSuccess({ todos: data })),
-      onFailure: error => dispatch(fetchTodosFailure({ error }))
-    })
-
-    return null
-  }
-}
+// export function fetchTodos() {
+//   return function(dispatch) {
+//     dispatch(fetchTodosStart())
+//
+//     api.fetchTodos({
+//       onSuccess: data => dispatch(fetchTodosSuccess({ todos: data })),
+//       onFailure: error => dispatch(fetchTodosFailure({ error }))
+//     })
+//
+//     return null
+//   }
+// }
 
 export function deleteTodo(id) {
   return function(dispatch, getState) {
