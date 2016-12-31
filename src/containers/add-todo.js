@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {addTodoOptimistic} from '../actions'
+import {addTodo} from '../actions'
 
 class AddTodo extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class AddTodo extends Component {
           const text = todoTextInput.value.trim();
 
           if (text) {
-            this.props.dispatch(addTodoOptimistic(text))
+            this.props.dispatch(addTodo(text))
             todoTextInput.value = ''
           }
         }}>

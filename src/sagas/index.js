@@ -1,23 +1,39 @@
 import { call, put, takeEvery, takeLatest, fork } from 'redux-saga/effects'
-import { fetchAllTodos } from '../api'
+import * as api from '../api'
 import * as actionTypes from '../actions/action-types'
+import * as actions from '../actions'
 
 function *fetchTodos(action) {
   try {
-    const todos = yield call(fetchAllTodos)
-    debugger;
-    yield put({ type: actionTypes.FETCH_TODOS_SUCCESS, payload: { todos }})
+    const todos = yield call(api.fetchTodos)
+    yield put(actions.fetchTodosSuccess({ todos }))
   } catch (e) {
-    yield put({ type: actionTypes.FETCH_TODOS_FAILURE, error: e.error})
+    yield put(actions.fetchTodosFailure({ error: e.error }))
   }
 }
 
-function *watchFetchTodos() {
-  yield takeEvery(actionTypes.FETCH_TODOS, fetchTodos)
+function *addTodo(action) {
+  try {
+    const todo = yield call(api.addTodo, { title: action.payload.text })
+    yield put(actions.addTodoSuccess({ id: todo.id, text: todo.title }))
+  } catch (e) {
+    yield put(actions.addTodoFailure(e.error))
+  }
+}
+
+function *deleteTodo(action) {
+  try {
+    yield call(api.deleteTodo, action.payload.id)
+    yield put(actions.deleteTodoSuccess(action.payload.id))
+  } catch (e) {
+    yield put(actions.deleteTodoFailure(e.error))
+  }
 }
 
 export default function* watchMany() {
   yield [
-    fork(watchFetchTodos)
+    takeEvery(actionTypes.FETCH_TODOS, fetchTodos),
+    takeEvery(actionTypes.ADD_TODO, addTodo),
+    takeEvery(actionTypes.DELETE_TODO, deleteTodo),
   ]
 }

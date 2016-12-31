@@ -3,7 +3,7 @@ import * as types from '../../src/actions/action-types'
 
 describe('todos reducer', () => {
   it('adds a todo', () => {
-    const action = {type: types.ADD_TODO, payload: {text: 'text'}}
+    const action = {type: types.ADD_TODO_SUCCESS, payload: {id: 0, text: 'text'}}
     const initalState = []
     const nextState = [{completed: false, id: 0, text: 'text'}]
 
@@ -11,7 +11,7 @@ describe('todos reducer', () => {
   })
 
   it('deletes a todo', () => {
-    const action = {type: types.DELETE_TODO, payload: {id: 1}}
+    const action = {type: types.DELETE_TODO_SUCCESS, payload: {id: 1}}
     const initalState = [{completed: false, id: 1, text: 'text'}]
     const nextState = []
 
