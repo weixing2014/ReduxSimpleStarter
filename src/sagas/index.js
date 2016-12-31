@@ -3,7 +3,7 @@ import * as api from '../api'
 import * as actionTypes from '../actions/action-types'
 import * as actions from '../actions'
 
-function *fetchTodos(action) {
+export function *fetchTodos(action) {
   try {
     const todos = yield call(api.fetchTodos)
     yield put(actions.fetchTodosSuccess({ todos }))
@@ -12,7 +12,7 @@ function *fetchTodos(action) {
   }
 }
 
-function *addTodo(action) {
+export function *addTodo(action) {
   try {
     const todo = yield call(api.addTodo, { title: action.payload.text })
     yield put(actions.addTodoSuccess({ id: todo.id, text: todo.title }))
@@ -21,7 +21,7 @@ function *addTodo(action) {
   }
 }
 
-function *deleteTodo(action) {
+export function *deleteTodo(action) {
   try {
     yield call(api.deleteTodo, action.payload.id)
     yield put(actions.deleteTodoSuccess(action.payload.id))
