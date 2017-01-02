@@ -1,33 +1,29 @@
-import {addTodo, deleteTodo, toggleTodo} from '../../src/actions/index'
+import * as actions from '../../src/actions'
+import * as actionTypes from '../../src/constant/action-types'
 
 describe('Actions', () => {
-  it('adds a new todo', () => {
-    expect(addTodo('todo')).to.deep.eql({
-      type: "ADD_TODO",
+  it('fetchTodos', () => {
+    expect(actions.fetchTodos()).to.deep.eql({ type: actionTypes.FETCH_TODOS })
+  })
+
+  it('fetchTodosSuccess', () => {
+    expect(actions.fetchTodosSuccess([
+      {
+        id: 0,
+        text: 'todo',
+        completed: false
+      }
+    ])).to.deep.eql({
+      type: "FETCH_TODOS_SUCCESS",
       payload: {
-        text: "todo"
+        todos: [
+          {
+            id: 0,
+            text: 'todo',
+            completed: false
+          }
+        ]
       }
     })
   })
-
-  it('removes a todo', () => {
-    expect(deleteTodo(1)).to.deep.eql({
-      type: "DELETE_TODO",
-      payload: {
-        id: 1
-      }
-    })
-  })
-
-  it('toggles a todo', () => {
-    expect(toggleTodo(1, false)).to.deep.eql({
-      type: "TOGGLE_TODO",
-      payload: {
-        completed: false,
-        id: 1
-      }
-    })
-  })
-
-  //todo: more action tests
 })

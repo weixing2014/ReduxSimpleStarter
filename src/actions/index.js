@@ -1,32 +1,26 @@
-import {createActions} from 'redux-actions'
-import uuidV4 from 'uuid/v4'
-import {FETCH_TODOS, ADD_TODO, ADD_TODO_SUCCESS, ADD_TODO_FAILURE, DELETE_TODO, TOGGLE_TODO, UPDATE_TODO, SET_VISIBILITY} from '../constant/action-types'
-import * as api from '../api'
+import {createActions, createAction} from 'redux-actions'
+import * as actionTypes from '../constant/action-types'
 
-export const {
-  fetchTodos,
-  fetchTodosSuccess,
-  fetchTodosFailure,
-  addTodo,
-  addTodoSuccess,
-  addTodoFailure,
-  deleteTodo,
-  deleteTodoSuccess,
-  deleteTodoFailure,
-  toggleTodo,
-  updateTodo,
-  setVisibility,
-} = createActions({
-  FETCH_TODOS: () => ({}),
-  FETCH_TODOS_SUCCESS: ({ todos }) => ({ todos }),
-  FETCH_TODOS_FAILURE: ({ error }) => ({ error }),
-  ADD_TODO: (text) => ({ text }),
-  ADD_TODO_SUCCESS: ({id, text}) => ({ id, text }),
-  ADD_TODO_FAILURE: (error) => ({ error }),
-  DELETE_TODO: id => ({id}),
-  DELETE_TODO_SUCCESS: (id) => ({id}),
-  DELETE_TODO_FAILURE: (error) => ({ error }),
-  TOGGLE_TODO: (id, completed) => ({id, completed}),
-  UPDATE_TODO: (id, text) => ({id, text}),
-  SET_VISIBILITY: filter => ({filter}),
-})
+export const fetchTodos = createAction(actionTypes.FETCH_TODOS)
+
+export const fetchTodosSuccess = createAction(actionTypes.FETCH_TODOS_SUCCESS, (todos) => ({ todos }))
+
+export const fetchTodosFailure = createAction(actionTypes.FETCH_TODOS_FAILURE, ({ error }) => ({ error }))
+
+export const addTodo = createAction(actionTypes.ADD_TODO, text => ({ text }))
+
+export const addTodoSuccess = createAction(actionTypes.ADD_TODO_SUCCESS, ({ id, text }) => ({ id, text }))
+
+export const addTodoFailure = createAction(actionTypes.ADD_TODO_FAILURE, error => ({ error }))
+
+export const deleteTodo = createAction(actionTypes.DELETE_TODO, id => ({ id }))
+
+export const deleteTodoSuccess = createAction(actionTypes.DELETE_TODO_SUCCESS)
+
+export const deleteTodoFailure = createAction(actionTypes.DELETE_TODO_FAILURE, error => ({ error }))
+
+export const toggleTodo = createAction(actionTypes.TOGGLE_TODO, (id, completed) => ({ id, completed }))
+
+export const updateTodo = createAction(actionTypes.UPDATE_TODO, (id, text) => ({ id, text }))
+
+export const setVisibility = createAction(actionTypes.SET_VISIBILITY, filter => ({ filter }))

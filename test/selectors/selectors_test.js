@@ -1,5 +1,5 @@
 import {getVisibleTodos} from '../../src/selectors'
-import {VISIBILITY_ALL, VISIBILITY_ACTIVE, VISIBILITY_COMPLETED} from '../../src/constant'
+import * as todoFilters from '../../src/constant/todo-filters'
 describe('selectors', () => {
   describe('should return visible todos', () => {
     it('should return all todos', () => {
@@ -8,7 +8,7 @@ describe('selectors', () => {
           {id: 1, text: 'a', completed: true},
           {id: 2, text: 'b', completed: false},
         ],
-        visibility: VISIBILITY_ALL
+        visibility: todoFilters.VISIBILITY_ALL
       })).to.deep.equal([
         {id: 1, text: 'a', completed: true},
         {id: 2, text: 'b', completed: false},
@@ -21,7 +21,7 @@ describe('selectors', () => {
           {id: 1, text: 'a', completed: true},
           {id: 2, text: 'b', completed: false},
         ],
-        visibility: VISIBILITY_ACTIVE
+        visibility: todoFilters.VISIBILITY_ACTIVE
       })).to.deep.equal([
         {id: 1, text: 'a', completed: true},
       ])
@@ -33,7 +33,7 @@ describe('selectors', () => {
           {id: 1, text: 'a', completed: true},
           {id: 2, text: 'b', completed: false},
         ],
-        visibility: VISIBILITY_COMPLETED
+        visibility: todoFilters.VISIBILITY_COMPLETED
       })).to.deep.equal([
         {id: 2, text: 'b', completed: false},
       ])

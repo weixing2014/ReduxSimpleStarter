@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects'
-import * as actionTypes from '../../src/actions/action-types'
+import * as actionTypes from '../../src/constant/action-types'
 import { fetchTodos } from '../../src/sagas'
 import * as api from '../../src/api'
 

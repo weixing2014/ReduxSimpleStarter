@@ -6,7 +6,7 @@ import * as actions from '../actions'
 export function *fetchTodos(action) {
   try {
     const todos = yield call(api.fetchTodos)
-    yield put(actions.fetchTodosSuccess({ todos }))
+    yield put(actions.fetchTodosSuccess(todos))
   } catch (e) {
     yield put(actions.fetchTodosFailure({ error: e.error }))
   }

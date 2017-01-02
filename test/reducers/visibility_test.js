@@ -1,6 +1,6 @@
 import reducer from '../../src/reducers/visibility'
-import * as types from '../../src/actions/action-types'
-import {VISIBILITY_ALL, VISIBILITY_ACTIVE, VISIBILITY_COMPLETED} from '../../src/constant'
+import * as types from '../../src/constant/action-types'
+import {VISIBILITY_ALL, VISIBILITY_ACTIVE, VISIBILITY_COMPLETED} from '../../src/constant/action-types'
 
 describe('visibility reducer', () => {
   it('sets visibility filter', () => {
