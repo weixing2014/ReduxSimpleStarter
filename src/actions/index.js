@@ -13,9 +13,11 @@ export const addTodoSuccess = createAction(actionTypes.ADD_TODO_SUCCESS, ({ id, 
 
 export const addTodoFailure = createAction(actionTypes.ADD_TODO_FAILURE, error => ({ error }))
 
+export const deleteTodoRequested = createAction(actionTypes.DELETE_TODO_REQUESTED, id => ({ id }))
+
 export const deleteTodo = createAction(actionTypes.DELETE_TODO, id => ({ id }))
 
-export const deleteTodoSuccess = createAction(actionTypes.DELETE_TODO_SUCCESS)
+export const deleteTodoSuccess = createAction(actionTypes.DELETE_TODO_SUCCESS, id => ({ id }))
 
 export const deleteTodoFailure = createAction(actionTypes.DELETE_TODO_FAILURE, error => ({ error }))
 

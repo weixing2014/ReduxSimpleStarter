@@ -13,8 +13,12 @@ const todos = handleActions({
     ]
   },
 
-  [actionTypes.DELETE_TODO_SUCCESS]: (state, { payload: { id } }) => {
+  [actionTypes.DELETE_TODO_REQUESTED]: (state, { payload: { id } }) => {
     return state.filter(todo => todo.id !== id)
+  },
+
+  [actionTypes.DELETE_TODO_SUCCESS]: (state, { payload: { id } }) => {
+    return state
   },
 
   [actionTypes.DELETE_TODO_FAILURE]: (state) => (state),

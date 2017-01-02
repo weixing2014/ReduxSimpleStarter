@@ -21,9 +21,9 @@ export function *addTodo(action) {
   }
 }
 
-export function *deleteTodo(action) {
+export function *deleteTodoRequested(action) {
   try {
-    yield call(api.deleteTodo, action.payload.id)
+    yield call(api.deleteTodoRequested, action.payload.id)
     yield put(actions.deleteTodoSuccess(action.payload.id))
   } catch (e) {
     yield put(actions.deleteTodoFailure(e.error))
@@ -34,6 +34,6 @@ export default function* watchMany() {
   yield [
     takeEvery(actionTypes.FETCH_TODOS, fetchTodos),
     takeEvery(actionTypes.ADD_TODO, addTodo),
-    takeEvery(actionTypes.DELETE_TODO, deleteTodo),
+    takeEvery(actionTypes.DELETE_TODO_REQUESTED, deleteTodoRequested),
   ]
 }

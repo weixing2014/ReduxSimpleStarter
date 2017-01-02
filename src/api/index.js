@@ -9,7 +9,7 @@ function completePromiseOf(fetchPromise) {
   })
 }
 
-export function deleteTodo(id) {
+export function deleteTodoRequested(id) {
   return completePromiseOf(fetch(SERVER_URL + id, {
     method: 'DELETE'
   }))
