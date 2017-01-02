@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest, fork } from 'redux-saga/effects'
 import * as api from '../api'
-import * as actionTypes from '../actions/action-types'
+import * as actionTypes from '../constant/action-types'
 import * as actions from '../actions'
 
 export function *fetchTodos(action) {

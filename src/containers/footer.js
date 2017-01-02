@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FilterLink from './filter-link'
-import {VISIBILITY_ACTIVE, VISIBILITY_ALL, VISIBILITY_COMPLETED} from '../constant'
+import * as todoFilters from '../constant/todo-filters'
 
 class Footer extends Component {
   render() {
@@ -8,11 +8,11 @@ class Footer extends Component {
       <div>
         <span>
           Filter:
-          <FilterLink filter={VISIBILITY_ALL} >All</FilterLink>
+          <FilterLink filter={ todoFilters.VISIBILITY_ALL } >All</FilterLink>
           {' '}
-          <FilterLink filter={VISIBILITY_ACTIVE} >Active</FilterLink>
+          <FilterLink filter={ todoFilters.VISIBILITY_ACTIVE } >Active</FilterLink>
           {' '}
-          <FilterLink filter={VISIBILITY_COMPLETED} >completed</FilterLink>
+          <FilterLink filter={ todoFilters.VISIBILITY_COMPLETED } >Completed</FilterLink>
         </span>
       </div>
     )

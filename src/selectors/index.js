@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
-import {VISIBILITY_ALL, VISIBILITY_ACTIVE, VISIBILITY_COMPLETED} from '../constant'
+import * as todoFilters from '../constant/todo-filters.js'
 
 const getVisibility = state => state.visibility
 const getTodos = state => state.todos
@@ -8,11 +8,11 @@ export const getVisibleTodos = createSelector(
   [getVisibility, getTodos],
   (visibility, todos) => {
     switch (visibility) {
-      case VISIBILITY_ALL:
+      case todoFilters.VISIBILITY_ALL:
         return todos
-      case VISIBILITY_ACTIVE:
+      case todoFilters.VISIBILITY_ACTIVE:
         return todos.filter(t => t.completed)
-      case VISIBILITY_COMPLETED:
+      case todoFilters.VISIBILITY_COMPLETED:
         return todos.filter(t => !t.completed)
     }
   }

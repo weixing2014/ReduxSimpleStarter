@@ -1,6 +1,6 @@
 import {createActions} from 'redux-actions'
 import uuidV4 from 'uuid/v4'
-import {FETCH_TODOS, ADD_TODO, ADD_TODO_SUCCESS, ADD_TODO_FAILURE, DELETE_TODO, TOGGLE_TODO, UPDATE_TODO, SET_VISIBILITY} from './action-types'
+import {FETCH_TODOS, ADD_TODO, ADD_TODO_SUCCESS, ADD_TODO_FAILURE, DELETE_TODO, TOGGLE_TODO, UPDATE_TODO, SET_VISIBILITY} from '../constant/action-types'
 import * as api from '../api'
 
 export const {
