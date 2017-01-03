@@ -15,14 +15,14 @@ export function deleteTodoRequested(id) {
   }))
 }
 
-export function fetchTodos() {
+export function fetchTodosRequested() {
   return completePromiseOf(fetch(SERVER_URL, {
     method: 'get',
     dataType: 'jsonp'
   }))
 }
 
-export function addTodo(todo) {
+export function addTodoRequested(todo) {
   return completePromiseOf(fetch(SERVER_URL, {
     headers: {
       'Accept': 'application/json',

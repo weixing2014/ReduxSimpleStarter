@@ -1,13 +1,13 @@
 import {createActions, createAction} from 'redux-actions'
 import * as actionTypes from '../constant/action-types'
 
-export const fetchTodos = createAction(actionTypes.FETCH_TODOS)
+export const fetchTodosRequested = createAction(actionTypes.FETCH_TODOS_REQUESTED)
 
 export const fetchTodosSuccess = createAction(actionTypes.FETCH_TODOS_SUCCESS, (todos) => ({ todos }))
 
 export const fetchTodosFailure = createAction(actionTypes.FETCH_TODOS_FAILURE, ({ error }) => ({ error }))
 
-export const addTodo = createAction(actionTypes.ADD_TODO, text => ({ text }))
+export const addTodoRequested = createAction(actionTypes.ADD_TODO_REQUESTED, text => ({ text }))
 
 export const addTodoSuccess = createAction(actionTypes.ADD_TODO_SUCCESS, ({ id, text }) => ({ id, text }))
 

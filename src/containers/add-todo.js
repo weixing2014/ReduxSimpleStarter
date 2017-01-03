@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {addTodo} from '../actions'
+import {addTodoRequested} from '../actions'
 
-class AddTodo extends Component {
+class addTodoRequested extends Component {
   constructor(props) {
     super(props)
   }
@@ -17,7 +17,7 @@ class AddTodo extends Component {
           const text = todoTextInput.value.trim();
 
           if (text) {
-            this.props.dispatch(addTodo(text))
+            this.props.dispatch(addTodoRequested(text))
             todoTextInput.value = ''
           }
         }}>
@@ -29,4 +29,4 @@ class AddTodo extends Component {
   }
 }
 
-export default connect()(AddTodo)
+export default connect()(addTodoRequested)

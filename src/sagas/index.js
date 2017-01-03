@@ -3,18 +3,18 @@ import * as api from '../api'
 import * as actionTypes from '../constant/action-types'
 import * as actions from '../actions'
 
-export function *fetchTodos(action) {
+export function *fetchTodosRequested(action) {
   try {
-    const todos = yield call(api.fetchTodos)
+    const todos = yield call(api.fetchTodosRequested)
     yield put(actions.fetchTodosSuccess(todos))
   } catch (e) {
     yield put(actions.fetchTodosFailure({ error: e.error }))
   }
 }
 
-export function *addTodo(action) {
+export function *addTodoRequested(action) {
   try {
-    const todo = yield call(api.addTodo, { title: action.payload.text })
+    const todo = yield call(api.addTodoRequested, { title: action.payload.text })
     yield put(actions.addTodoSuccess({ id: todo.id, text: todo.title }))
   } catch (e) {
     yield put(actions.addTodoFailure(e.error))
@@ -32,8 +32,8 @@ export function *deleteTodoRequested(action) {
 
 export default function* watchMany() {
   yield [
-    takeEvery(actionTypes.FETCH_TODOS, fetchTodos),
-    takeEvery(actionTypes.ADD_TODO, addTodo),
+    takeEvery(actionTypes.FETCH_TODOS_REQUESTED, fetchTodosRequested),
+    takeEvery(actionTypes.ADD_TODO_REQUESTED, addTodoRequested),
     takeEvery(actionTypes.DELETE_TODO_REQUESTED, deleteTodoRequested),
   ]
 }

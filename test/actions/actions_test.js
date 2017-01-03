@@ -2,8 +2,8 @@ import * as actions from '../../src/actions'
 import * as actionTypes from '../../src/constant/action-types'
 
 describe('Actions', () => {
-  it('fetchTodos', () => {
-    expect(actions.fetchTodos()).to.deep.eql({ type: actionTypes.FETCH_TODOS })
+  it('fetchTodosRequested', () => {
+    expect(actions.fetchTodosRequested()).to.deep.eql({ type: actionTypes.FETCH_TODOS_REQUESTED })
   })
 
   it('fetchTodosSuccess', () => {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import VisibleTodos from '../containers/visible-todos'
-import AddTodo from '../containers/add-todo'
+import addTodoRequested from '../containers/add-todo'
 import Footer from '../containers/footer'
-import { fetchTodos } from '../actions'
+import { fetchTodosRequested } from '../actions'
 import {connect} from 'react-redux'
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
       <div>
         <div>React simple starter</div>
         <div>
-          <AddTodo />
+          <addTodoRequested />
           <VisibleTodos />
           <Footer />
         </div>
@@ -27,7 +27,7 @@ class App extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetchTodos: () => {
-      dispatch(fetchTodos())
+      dispatch(fetchTodosRequested())
     }
   }
 }

@@ -1,20 +1,20 @@
 import { call, put } from 'redux-saga/effects'
 import * as actionTypes from '../../src/constant/action-types'
-import { fetchTodos } from '../../src/sagas'
+import { fetchTodosRequested } from '../../src/sagas'
 import * as api from '../../src/api'
 
 describe('sagas', () => {
   it('should fetch todos', () => {
     const action = {
-      type: actionTypes.FETCH_TODOS,
+      type: actionTypes.FETCH_TODOS_REQUESTED,
     }
 
-    const it = fetchTodos(action)
+    const it = fetchTodosRequested(action)
 
     expect(
       it.next().value
     ).to.be.eql(
-      call(api.fetchTodos)
+      call(api.fetchTodosRequested)
     )
 
     const mockTodos = [{ id: 1, title: 'ok', completed: false }]
